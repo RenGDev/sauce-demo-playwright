@@ -1,9 +1,6 @@
 import { test, expect } from '@playwright/test'
+import { loginAs } from '../actions/LoginActions';
 
-const user: Record<string, string> = {
-  'username': "standard_user",
-  'password': "secret_sauce"
-}
 
 const checkout_fields: Record<string, string> = {
   'firstName': "Lorenzo",
@@ -12,10 +9,7 @@ const checkout_fields: Record<string, string> = {
 }
 
 test.beforeEach(async ({ page }) => {
-    await page.goto('https://www.saucedemo.com/');
-    await page.fill('[data-test="username"]', user['username'])
-    await page.fill('[data-test="password"]', user['password'])
-    await page.click('[data-test="login-button"]')
+    await loginAs(page, 'standard_user', 'secret_sauce')
     await page.click('[data-test="add-to-cart-sauce-labs-backpack"]')
     await page.click('[data-test="shopping-cart-link"]')
     await page.click('[data-test="checkout"]')

@@ -1,10 +1,10 @@
 import { test, expect } from '@playwright/test'
-import { loginAs } from '../actions/LoginActions';
+import { loginAs } from '../actions/LoginActions'
 
 
 
 test.beforeEach(async ({ page }) => {
-    await loginAs(page, 'standard_user', 'secret_sauce');
+    await loginAs(page, 'standard_user', 'secret_sauce')
 })
 
 test.describe('items functions', () => {
